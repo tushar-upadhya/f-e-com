@@ -7,11 +7,11 @@
   @apply bg-white;
 }
 .userTable th {
-  @apply text-base font-medium border;
+  @apply border text-base font-medium;
 }
 
 .userTable td {
-  @apply text-base text-center border;
+  @apply border text-base text-center;
 }
 
 /**scrollbar hidden****/

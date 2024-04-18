@@ -4,52 +4,47 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="fixed z-40 w-full h-16 bg-white shadow-md">
-      <div className="container flex items-center justify-between h-full px-4 mx-auto ">
+    <header className="h-16 shadow-md bg-white">
+      <div className="h-full container mx-auto flex items-center px-4 justify-between">
         <div>
-          <Link to={"/"}>
-            <Logo width={90} height={50} />
+          <Link>
+            <Logo width={90} height={90} />
           </Link>
         </div>
 
-        <div className="items-center justify-between hidden w-full max-w-sm pl-2 border rounded-full lg:flex focus-within:shadow">
+        <div className="hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full focus">
           <input
             type="text"
-            placeholder="search product here..."
+            placeholder="Search Product"
             className="w-full outline-none"
           />
 
-          <div className="text-lg text-slate-900 min-w-[50px] h-8 flex items-center justify-center rounded-r-full">
-            <Search className="cursor-pointer" />
+          <div className="text-lg min-w-[50px] h-8 bg-red-400 flex items-center justify-center rounded-full">
+            <Search />
           </div>
         </div>
 
-        {/* user */}
+        <div className="flex items-center gap-7">
+          <User />
+        </div>
 
-        <div className="flex items-center gap-4 text-lg cursor-pointer text-slate-900">
-          <div>
-            <User className="cursor-pointer" />
+        <div className="text-2xl cursor-pointer">
+          <span>
+            <ShoppingCart />
+          </span>
+
+          <div className="bg-red-600 text-white w-5 h-5 rounded-full p-1 flex items-center justify-between">
+            <p className="text-sm">0</p>
           </div>
+        </div>
 
-          <div className="relative text-lg text-slate-900">
-            <span>
-              <ShoppingCart className="cursor-pointer" />
-            </span>
-
-            <div className="absolute flex items-center justify-center w-5 h-5 p-1 text-white bg-red-400 rounded-full -top-2 -right-2">
-              <p className="text-sm">0</p>
-            </div>
-          </div>
-
-          {/* login /log out */}
-          <div>
-            <Link
-              to={"login"}
-              className="px-3 py-1 text-white transition-all bg-red-400 rounded-full hover:bg-red-500"
-            >
-              login
-            </Link>
-          </div>
+        <div>
+          <Link
+            to={"/login"}
+            className="px-3 py-1 rounded-full bg-red-400 hover:bg-red-500"
+          >
+            Login
+          </Link>
         </div>
       </div>
     </header>
