@@ -18,3 +18,5 @@ connectDb().then(() => {
     console.log("bd:");
   });
 });
+
+// 2 05
