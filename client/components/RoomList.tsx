@@ -20,7 +20,7 @@ const RoomList = ({ rooms }: { rooms: any }) => {
     });
     setFilterRooms(filtered);
   }, [roomType]);
-  console.log("filterRooms:", filterRooms);
+  // console.log("filterRooms:", filterRooms);
 
   return (
     <section className="py-16 min-h-[90vh]">
@@ -78,7 +78,7 @@ const RoomList = ({ rooms }: { rooms: any }) => {
       {/* room list */}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {rooms.data.map((room: any) => {
+        {filterRooms.map((room: any) => {
           const imgURL = `http://127.0.0.1:1337${room.attributes.image.data?.attributes.url}`;
           return (
             <div key={room.id}>
