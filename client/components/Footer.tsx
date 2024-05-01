@@ -1,5 +1,9 @@
 const Footer = () => {
-  return <div>Footer</div>;
+  return (
+    <footer>
+      <div className="container mx-auto"></div>
+    </footer>
+  );
 };
 
 export default Footer;
