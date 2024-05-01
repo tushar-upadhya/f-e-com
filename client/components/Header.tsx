@@ -1,18 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { Linkedin } from "lucide-react";
-
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { RegisterLink, LoginLink } from "@kinde-oss/kinde-auth-nextjs";
-
-const socials = [
-  { icon: <Linkedin />, href: "#" },
-  { icon: <Linkedin />, href: "#" },
-  { icon: <Linkedin />, href: "#" },
-  { icon: <Linkedin />, href: "#" },
-  { icon: <Linkedin />, href: "#" },
-];
+import { socials } from "@/lib/socialsLib";
 
 const Header = async () => {
   const { isAuthenticated, getUser } = getKindeServerSession();

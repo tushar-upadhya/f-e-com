@@ -1,17 +1,6 @@
-import { Maximize, User, Users } from "lucide-react";
+import { getRoomData } from "@/lib/strapiAPI";
+import { Maximize, Users } from "lucide-react";
 import Image from "next/image";
-
-const getRoomData = async ({ params }: { params: any }) => {
-  const res = await fetch(
-    `http://127.0.0.1:1337/api/rooms/${params.id}?populate=*`,
-    {
-      next: {
-        revalidate: 0,
-      },
-    }
-  );
-  return await res.json();
-};
 
 const RoomDetailsPage = async ({ params }: { params: any }) => {
   // console.log("params:", params);
