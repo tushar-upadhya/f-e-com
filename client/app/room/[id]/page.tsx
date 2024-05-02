@@ -1,4 +1,5 @@
-import { getRoomData } from "@/lib/strapiAPI";
+import Reservation from "@/components/Reservation";
+import { getReservationData, getRoomData } from "@/lib/strapiAPI";
 import { Maximize, Users } from "lucide-react";
 import Image from "next/image";
 
@@ -6,6 +7,8 @@ const RoomDetailsPage = async ({ params }: { params: any }) => {
   // console.log("params:", params);
 
   const room = await getRoomData({ params });
+  const reservations = await getReservationData();
+  console.log("reservations:", reservations);
 
   const imgURL = `http://127.0.0.1:1337${room.data.attributes.image.data.attributes.url}`;
   // console.log("imgURL:", imgURL);
@@ -54,8 +57,8 @@ const RoomDetailsPage = async ({ params }: { params: any }) => {
             </div>
           </div>
           {/* reservation */}
-          <div className="w-full lg:max-w-[360px] h-max bg-green-300">
-            reservation
+          <div className="w-full lg:max-w-[360px] h-max">
+            <Reservation />
           </div>
         </div>
       </div>
