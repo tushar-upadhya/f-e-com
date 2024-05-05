@@ -1,5 +1,6 @@
 import Reservation from "@/components/Reservation";
 import { getReservationData, getRoomData } from "@/lib/strapiAPI";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Maximize, Users } from "lucide-react";
 import Image from "next/image";
 
@@ -8,7 +9,10 @@ const RoomDetailsPage = async ({ params }: { params: any }) => {
 
   const room = await getRoomData({ params });
   const reservations = await getReservationData();
-  console.log("reservations:", reservations);
+  // console.log("reservations:", reservations);
+  const { isAuthenticated, getUser } = getKindeServerSession();
+  const isUserAuthenticated = await isAuthenticated();
+  const userData = await getUser();
 
   const imgURL = `http://127.0.0.1:1337${room.data.attributes.image.data.attributes.url}`;
   // console.log("imgURL:", imgURL);
@@ -51,14 +55,19 @@ const RoomDetailsPage = async ({ params }: { params: any }) => {
                   <div className="text-2xl text-accent">
                     <Users />
                   </div>
-                  <p>{room.data.attributes.capacity} Guestes</p>
+                  <p>{room.data.attributes.capacity} Guests</p>
                 </div>
               </div>
             </div>
           </div>
           {/* reservation */}
           <div className="w-full lg:max-w-[360px] h-max">
-            <Reservation />
+            <Reservation
+              reservations={reservations}
+              room={room}
+              isUserAuthenticated={isUserAuthenticated}
+              userData={userData}
+            />
           </div>
         </div>
       </div>
