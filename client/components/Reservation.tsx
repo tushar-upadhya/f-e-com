@@ -1,18 +1,19 @@
 "use client";
 
-import { Calendar } from "./ui/calendar";
-import { CalendarIcon } from "@radix-ui/react-icons";
-import { format, isPast } from "date-fns";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn, postData } from "@/lib/utils";
-import { useEffect, useState } from "react";
-import { Button } from "./ui/button";
 import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { CalendarIcon } from "@radix-ui/react-icons";
+import { format, isPast } from "date-fns";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import AlertMessage from "./AlertMessage";
+import { Button } from "./ui/button";
+import { Calendar } from "./ui/calendar";
 
 const Reservation = ({
   reservations,
@@ -32,13 +33,15 @@ const Reservation = ({
     type: "error" | "success" | null;
   } | null>(null);
 
+  const router = useRouter();
+
   const formatDateForStrapi = (date: Date) => {
-    return format(date, YYYY - MM - DD);
+    return format(date, "YYYY - MM - DD");
   };
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setMessageAlert(null);
+      return setMessageAlert(null);
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -47,31 +50,80 @@ const Reservation = ({
   const savedReservation = () => {
     // console.log("savedReservation:", savedReservation);
     if (!checkInDate || !checkOutDate) {
-      setMessageAlert({
+      return setMessageAlert({
         message: "Please select check-in and check-out dates",
         type: "error",
       });
     }
-    if (checkInDate?.getTime() === checkOutDate?.getTime()) {
+
+    if (checkInDate.getTime() === checkOutDate.getTime()) {
       return setMessageAlert({
         message: "Check-Out dates cannot be the same",
         type: "error",
       });
     }
-    const data = {
-      data: {
-        firstname: "John",
-        lastname:'doe',
-        email:'doe@gmail.com',
-        checkIn:checkInDate?formatDateForStrapi(checkInDate):null,
-        checkOut:checkOutDate?formatDateForStrapi(checkOutDate):null,
 
-        room:room.data.id
-      },
-      postData('http://127.0.0.1:1337/api/reservations',data)
-    };
+    // filter reservations for the current Room
+    const isReserved = reservations.data
+      .filter((item: any) => item.attributes.room.data.id === room.data.id)
+      .some((item: any) => {
+        // check if any reservation overlaps with
+        const existingCheckIn = new Date(item.attributes.checkIn).setHours(
+          0,
+          0,
+          0,
+          0
+        );
+        const existingCheckOut = new Date(item.attributes.checkOut).setHours(
+          0,
+          0,
+          0,
+          0
+        );
 
+        // convert existing check-in data to midNight
+        const checkInTime = checkInDate.setHours(0, 0, 0, 0);
+        const checkOutTime = checkOutDate.setHours(0, 0, 0, 0);
 
+        // check if the room is reserved between the checkIN and checkOUT dates
+        const isReservedBetweenDates =
+          (checkInTime >= existingCheckIn && checkInTime < existingCheckOut) ||
+          (checkOutTime > existingCheckIn &&
+            checkOutTime <= existingCheckOut) ||
+          (existingCheckIn > checkInTime && existingCheckIn < checkOutTime) ||
+          (existingCheckOut > checkInTime && existingCheckOut <= checkOutTime);
+
+        return isReservedBetweenDates;
+      });
+
+    if (isReserved) {
+      setMessageAlert({
+        message:
+          "This room is already for this date.Please choose different dates or another room",
+        type: "error",
+      });
+    } else {
+      const data = {
+        data: {
+          firstname: userData.family_name,
+          lastname: userData.given_name,
+          email: userData.email,
+          checkIn: checkInDate ? formatDateForStrapi(checkInDate) : null,
+          checkOut: checkOutDate ? formatDateForStrapi(checkOutDate) : null,
+
+          room: room.data.id,
+        },
+      };
+
+      postData("http://127.0.0.1:1337/api/reservations", data);
+
+      setMessageAlert({
+        message: "Your booking has been successfully confirmed!",
+        type: "success",
+      });
+
+      router.refresh();
+    }
   };
   return (
     <div>
