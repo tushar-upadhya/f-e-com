@@ -14,9 +14,30 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "./ui/button";
 
+const deleteData = async (url: string) => {
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const res = await fetch(url, options);
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.log("error:", error);
+  }
+};
+
 const CancelReservation = ({ reservation }: { reservation: any }) => {
+  const router = useRouter();
+
   const handleCancelReservation = (id: number) => {
-    console.log("id:", id);
+    // console.log("id:", id);
+    deleteData(`http://127.0.0.1:1337/api/reservation/${id}`);
+    router.refresh();
   };
   return (
     <AlertDialog>
@@ -48,3 +69,5 @@ const CancelReservation = ({ reservation }: { reservation: any }) => {
 };
 
 export default CancelReservation;
+
+//  3 17

@@ -5,18 +5,14 @@ export const links = [
   },
   {
     name: "Restaurant",
-    path: "/",
+    path: "/restaurant",
   },
   {
     name: "Pool",
-    path: "/",
-  },
-  {
-    name: "Best Deals",
-    path: "/",
+    path: "/pool",
   },
   {
     name: "Contact",
-    path: "/",
+    path: "/contact",
   },
 ];

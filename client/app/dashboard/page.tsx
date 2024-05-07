@@ -14,6 +14,8 @@ const getUserReservations = async (userEmail: any) => {
 
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import CancelReservation from "@/components/CancelReservation";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 const DashBoardPage = async () => {
   const { getUser } = getKindeServerSession();
@@ -29,10 +31,21 @@ const DashBoardPage = async () => {
           My Booking
         </h3>
 
-        <div>
+        <div className="flex flex-col gap-8 h-full">
           {userReservations.data.length < 1 ? (
-            <div>
-              <p>You don't have any reservation</p>
+            <div className="flex flex-col items-center justify-center h-[50vh]">
+              <p className="text-xl text-center text-secondary/70 mb-4">
+                You don't have any reservation
+              </p>
+
+              <Link href={"/"}>
+                <Button
+                  size={"md"}
+                  className="bg-accent uppercase text-white hover:bg-accent/80 transition-all"
+                >
+                  Go to homePage
+                </Button>
+              </Link>
             </div>
           ) : (
             userReservations.data.map((reservation: any) => {

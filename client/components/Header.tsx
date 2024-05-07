@@ -1,16 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import {
-  RegisterLink,
   LoginLink,
+  RegisterLink,
 } from "@kinde-oss/kinde-auth-nextjs/components";
-import { socials } from "@/lib/socialsLib";
-import { Button } from "./ui/button";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import DeskTopNav from "./DeskTopNav";
 import Dropdown from "./Dropdown";
 import MobileNav from "./MobileNav";
-import DeskTopNav from "./DeskTopNav";
+import { Button } from "./ui/button";
 
 const Header = async () => {
   const { isAuthenticated, getUser } = getKindeServerSession();
@@ -35,24 +34,6 @@ const Header = async () => {
                 alt="logo"
               />
             </Link>
-
-            {/* separator */}
-            <div className="w-[1px] h-[40px] bg-gray-300">|</div>
-
-            {/* social Icon */}
-            <div className="flex gap-2">
-              {socials.map((item, index) => {
-                return (
-                  <Link
-                    className=" text-slate-900 hover:bg-accent hover:text-white text-sm w-[28px] h-[28px] flex items-center justify-center rounded-full transition-all"
-                    href={item.href}
-                    key={index}
-                  >
-                    {item.icon}
-                  </Link>
-                );
-              })}
-            </div>
           </div>
 
           {/* sign In & SignUp */}

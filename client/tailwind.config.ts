@@ -17,33 +17,30 @@ const config = {
         "2xl": "1400px",
       },
     },
+    backgroundImage: {
+      hero: 'url("/assets/hero/bg.jpg)',
+    },
+    fontFamily: {
+      primary: "var(--font-marcellus)",
+      secondary: "var(--font-urbanist)",
+    },
     extend: {
       colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#292836",
+          hover: "#3e3d4a",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
-        },
-        destructive: {
-          DEFAULT: "hsl(var(--destructive))",
-          foreground: "hsl(var(--destructive-foreground))",
-        },
-        muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "#6b6a71",
         },
         accent: {
-          DEFAULT: "#E57373",
-          foreground: "hsl(var(--accent-foreground))",
+          DEFAULT: "#e85f4c",
+          hover: "#ea6f5e",
         },
+        tertiary: {
+          DEFAULT: "#faf5ef",
+        },
+
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
