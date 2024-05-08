@@ -14,7 +14,10 @@ const config = {
       center: true,
       padding: "2rem",
       screens: {
-        "2xl": "1400px",
+        sm: "320px",
+        md: "375px",
+        lg: "768px",
+        xl: "1080px",
       },
     },
     backgroundImage: {

@@ -20,11 +20,11 @@ const Header = async () => {
   // console.log("user:", user);
 
   return (
-    <header className="py-6 shadow-md">
+    <header className="py-6 shadow-md ">
       <div className="container mx-auto ">
         <div className="flex flex-col md:flex-row md:justify-between gap-6">
           {/* logo & social Icon */}
-          <div className="flex items-center gap-5 justify-center xl:w-max">
+          <div className="flex items-center gap-8 justify-center xl:w-max">
             {/* logo */}
             <Link href={"/"}>
               <Image
