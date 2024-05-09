@@ -5,7 +5,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { cn, postData } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { format, isPast } from "date-fns";
@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import AlertMessage from "./AlertMessage";
 import { Button } from "./ui/button";
 import { Calendar } from "./ui/calendar";
+import { postData } from "@/lib/strapiAPI";
 
 const Reservation = ({
   reservations,
@@ -129,7 +130,7 @@ const Reservation = ({
     <div>
       <div className="h-[320px] mb-4">
         {/* top */}
-        <div className="bg-accent py-4 text-center relative mb-2">
+        <div className="bg-accent font-secondary font-semibold py-4 text-center relative mb-2">
           <h4 className="text-xl text-white">Book Your Room</h4>
           {/* triangle */}
           <div className="absolute -bottom-[8px] left-[calc(50%_-_10px)] w-0 h-0 border-l-[10px] border-l-transparent border-t-[8px] border-t-accent border-r-[10px] border-r-transparent" />
@@ -197,12 +198,19 @@ const Reservation = ({
 
           {/* conditional rendering of the booking based USER */}
           {isUserAuthenticated ? (
-            <Button size={"md"} onClick={() => savedReservation()}>
+            <Button
+              size={"md"}
+              onClick={() => savedReservation()}
+              className="w-full bg-accent font-secondary font-semibold text-white hover:bg-accent-hover"
+            >
               Book Now
             </Button>
           ) : (
             <LoginLink>
-              <Button className="w-full" size={"md"}>
+              <Button
+                className="w-full bg-accent font-secondary font-semibold"
+                size={"md"}
+              >
                 Book Now
               </Button>
             </LoginLink>

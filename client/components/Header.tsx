@@ -42,7 +42,7 @@ const Header = async () => {
               {isUserAuthenticated ? (
                 <Dropdown user={user} />
               ) : (
-                <div className="flex gap-2">
+                <div className="flex gap-2 font-primary">
                   <LoginLink>
                     <Button variant={"primary"}>Sign IN</Button>
                   </LoginLink>

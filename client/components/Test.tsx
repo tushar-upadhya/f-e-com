@@ -1,13 +1,13 @@
 const Test = () => {
   return (
-    <section className="bg-white">
+    <section className="bg-white ">
       <div className="mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-        <h2 className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+        <h2 className="text-center text-4xl font-bold tracking-tight font-primary text-accent sm:text-5xl">
           Read trusted reviews from our customers
         </h2>
 
         <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
-          <blockquote className="rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8">
+          <blockquote className="rounded-lg  p-6 shadow-sm sm:p-8">
             <div className="flex items-center gap-4">
               <img
                 alt=""
@@ -16,7 +16,7 @@ const Test = () => {
               />
 
               <div>
-                <div className="flex justify-center gap-0.5 text-green-500">
+                <div className="flex justify-center gap-0.5 text-accent">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
@@ -59,13 +59,13 @@ const Test = () => {
                   </svg>
                 </div>
 
-                <p className="mt-0.5 text-lg font-medium text-gray-900">
+                <p className="mt-0.5 text-lg font-medium font-secondary text-primary">
                   Paul Starr
                 </p>
               </div>
             </div>
 
-            <p className="mt-4 text-gray-700">
+            <p className="mt-4 text-primary font-secondary">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa
               sit rerum incidunt, a consequuntur recusandae ab saepe illo est
               quia obcaecati neque quibusdam eius accusamus error officiis atque
@@ -73,7 +73,7 @@ const Test = () => {
             </p>
           </blockquote>
 
-          <blockquote className="rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8">
+          <blockquote className="rounded-lg  p-6 shadow-sm sm:p-8">
             <div className="flex items-center gap-4">
               <img
                 alt=""
@@ -82,7 +82,7 @@ const Test = () => {
               />
 
               <div>
-                <div className="flex justify-center gap-0.5 text-green-500">
+                <div className="flex justify-center gap-0.5 text-accent">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
@@ -125,13 +125,13 @@ const Test = () => {
                   </svg>
                 </div>
 
-                <p className="mt-0.5 text-lg font-medium text-gray-900">
+                <p className="mt-0.5 text-lg font-medium font-secondary text-primary">
                   Paul Starr
                 </p>
               </div>
             </div>
 
-            <p className="mt-4 text-gray-700">
+            <p className="mt-4 text-primary font-secondary">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa
               sit rerum incidunt, a consequuntur recusandae ab saepe illo est
               quia obcaecati neque quibusdam eius accusamus error officiis atque
@@ -139,7 +139,7 @@ const Test = () => {
             </p>
           </blockquote>
 
-          <blockquote className="rounded-lg bg-gray-50 p-6 shadow-sm sm:p-8">
+          <blockquote className="rounded-lg  p-6 shadow-sm sm:p-8">
             <div className="flex items-center gap-4">
               <img
                 alt=""
@@ -148,7 +148,7 @@ const Test = () => {
               />
 
               <div>
-                <div className="flex justify-center gap-0.5 text-green-500">
+                <div className="flex justify-center gap-0.5 text-accent">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5"
@@ -191,13 +191,13 @@ const Test = () => {
                   </svg>
                 </div>
 
-                <p className="mt-0.5 text-lg font-medium text-gray-900">
+                <p className="mt-0.5 text-lg font-medium font-secondary text-primary">
                   Paul Starr
                 </p>
               </div>
             </div>
 
-            <p className="mt-4 text-gray-700">
+            <p className="mt-4 text-primary font-secondary">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa
               sit rerum incidunt, a consequuntur recusandae ab saepe illo est
               quia obcaecati neque quibusdam eius accusamus error officiis atque

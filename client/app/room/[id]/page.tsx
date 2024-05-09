@@ -35,10 +35,14 @@ const RoomDetailsPage = async ({ params }: { params: any }) => {
             <div className="flex flex-1 flex-col mb-8">
               {/* title & price */}
               <div className="flex justify-between items-center mb-4">
-                <h3 className="h3">{room.data.attributes.title}</h3>
-                <p className="h3 font-secondary font-medium text-accent">
+                <h3 className="h3 font-primary text-accent">
+                  {room.data.attributes.title}
+                </h3>
+                <p className="h3 font-primary font-semibold text-accent">
                   &#8377; {room.data.attributes.price}
-                  <span className="text-base text-primary">/ Night</span>
+                  <span className="text-base text-primary font-primary">
+                    / Night
+                  </span>
                 </p>
               </div>
               {/* info */}
@@ -47,15 +51,17 @@ const RoomDetailsPage = async ({ params }: { params: any }) => {
                   <div className="text-2xl text-accent">
                     <Maximize />
                   </div>
-                  <p>
+                  <p className="font-primary font-semibold text-primary">
                     {room.data.attributes.size} m <sup>2</sup>{" "}
                   </p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="text-2xl text-accent">
+                  <div className="font-primary font-semibold text-primary">
                     <Users />
                   </div>
-                  <p>{room.data.attributes.capacity} Guests</p>
+                  <p className="font-primary font-semibold text-accent">
+                    {room.data.attributes.capacity} Guests
+                  </p>
                 </div>
               </div>
             </div>

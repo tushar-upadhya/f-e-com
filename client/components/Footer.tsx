@@ -4,10 +4,10 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="bg-slate-700">
+    <footer className="bg-primary">
       <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-md">
-          <strong className="block text-center text-xl font-bold text-gray-900 sm:text-3xl">
+          <strong className="block text-center text-xl font-semibold font-secondary text-white sm:text-3xl">
             Want us to email you with the latest blockbuster news?
           </strong>
 
@@ -34,7 +34,7 @@ const Footer = () => {
 
         <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
           <div className="mx-auto max-w-sm lg:max-w-none">
-            <p className="mt-4 text-center text-gray-500 lg:text-left lg:text-lg">
+            <p className="mt-4 text-center text-white font-secondary lg:text-left lg:text-lg">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
               Praesentium natus quod eveniet aut perferendis distinctio iusto
               repudiandae, provident velit earum?
@@ -57,30 +57,42 @@ const Footer = () => {
 
           <div className="grid grid-cols-1 gap-8 text-center lg:grid-cols-3 lg:text-left">
             <div>
-              <strong className="font-medium text-gray-900"> Services </strong>
+              <strong className="font-medium text-accent"> Services </strong>
 
-              <ul className="mt-6 space-y-1">
+              <ul className="mt-6 space-y-1 font-secondary">
                 <li>
-                  <Link className="text-white transition " href="#">
+                  <Link
+                    className="text-white hover:text-accent-hover duration-200 transition-all"
+                    href="#"
+                  >
                     {" "}
                     Marketing{" "}
                   </Link>
                 </li>
 
                 <li>
-                  <Link className="text-white transition " href="#">
+                  <Link
+                    className="text-white hover:text-accent-hover duration-200 transition-all"
+                    href="#"
+                  >
                     Graphic Design
                   </Link>
                 </li>
 
                 <li>
-                  <Link className="text-white transition " href="#">
+                  <Link
+                    className="text-white hover:text-accent-hover duration-200 transition-all"
+                    href="#"
+                  >
                     App Development
                   </Link>
                 </li>
 
                 <li>
-                  <Link className="text-white transition " href="#">
+                  <Link
+                    className="text-white hover:text-accent-hover duration-200 transition-all"
+                    href="#"
+                  >
                     Web Development
                   </Link>
                 </li>
@@ -88,32 +100,47 @@ const Footer = () => {
             </div>
 
             <div>
-              <strong className="font-medium text-gray-900"> About </strong>
+              <strong className="font-medium text-accent font-secondary">
+                {" "}
+                About{" "}
+              </strong>
 
               <ul className="mt-6 space-y-1">
                 <li>
-                  <Link className="text-white transition " href="#">
+                  <Link
+                    className="text-white hover:text-accent-hover duration-200 transition-all"
+                    href="#"
+                  >
                     {" "}
                     About{" "}
                   </Link>
                 </li>
 
                 <li>
-                  <Link className="text-white transition" href="#">
+                  <Link
+                    className="text-white hover:text-accent-hover duration-200 transition-all"
+                    href="#"
+                  >
                     {" "}
                     Careers{" "}
                   </Link>
                 </li>
 
                 <li>
-                  <Link className="text-white transition " href="#">
+                  <Link
+                    className="text-white hover:text-accent-hover duration-200 transition-all"
+                    href="#"
+                  >
                     {" "}
                     History{" "}
                   </Link>
                 </li>
 
                 <li>
-                  <Link className="text-white transition " href="#">
+                  <Link
+                    className="text-white hover:text-accent-hover duration-200 transition-all"
+                    href="#"
+                  >
                     {" "}
                     Our Team{" "}
                   </Link>
@@ -122,25 +149,37 @@ const Footer = () => {
             </div>
 
             <div>
-              <strong className="font-medium text-gray-900"> Support </strong>
+              <strong className="font-medium text-accent font-secondary">
+                {" "}
+                Support{" "}
+              </strong>
 
               <ul className="mt-6 space-y-1">
                 <li>
-                  <Link className="text-white transition" href="#">
+                  <Link
+                    className="text-white hover:text-accent-hover duration-200 transition-all"
+                    href="#"
+                  >
                     {" "}
                     FAQs{" "}
                   </Link>
                 </li>
 
                 <li>
-                  <Link className="text-white transition " href="#">
+                  <Link
+                    className="text-white hover:text-accent-hover duration-200 transition-all"
+                    href="#"
+                  >
                     {" "}
                     Contact{" "}
                   </Link>
                 </li>
 
                 <li>
-                  <Link className="text-white transition " href="#">
+                  <Link
+                    className="text-white hover:text-accent-hover duration-200 transition-all"
+                    href="#"
+                  >
                     {" "}
                     Live Chat{" "}
                   </Link>
@@ -150,12 +189,12 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-16 border-t border-gray-100 pt-8">
-          <p className="text-center text-xs/relaxed text-gray-500">
+        <div className="mt-16 border-t  border-gray-100 pt-8">
+          <p className="text-center text-xs/relaxed font-secondary text-gray-500">
             Created by{" "}
             <Link
               href="#"
-              className="text-white hover:underline transition duration-200"
+              className="text-white  hover:text-accent-hover duration-200 transition-all"
             >
               Tushar Upadhyay
             </Link>

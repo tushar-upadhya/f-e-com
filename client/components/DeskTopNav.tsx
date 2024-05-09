@@ -19,7 +19,7 @@ const DeskTopNav = ({
             <li key={index}>
               <Link
                 href={link.path}
-                className="font-bold text-[13px] uppercase tracking-[3px] hover:text-accent transition-all"
+                className="font-bold text-[13px] uppercase font-primary tracking-[3px] hover:text-accent transition-all"
               >
                 {link.name}
               </Link>
