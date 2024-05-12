@@ -1,8 +1,17 @@
 import Reservation from "@/components/Reservation";
-import { getReservationData, getRoomData } from "@/lib/strapiAPI";
+import { getRoomData } from "@/lib/strapiAPI";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { Maximize, Users } from "lucide-react";
 import Image from "next/image";
+
+const getReservationData = async () => {
+  const res = await fetch(`http://127.0.0.1:1337/api/reservations?populate=*`, {
+    next: {
+      revalidate: 0,
+    },
+  });
+  return await res.json();
+};
 
 const RoomDetailsPage = async ({ params }: { params: any }) => {
   // console.log("params:", params);

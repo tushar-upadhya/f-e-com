@@ -12,10 +12,10 @@ const AlertMessage = ({ message, type }: { message: any; type: any }) => {
         <div className="text-xl w-[44px] flex justify-center items-center">
           <Info />
         </div>
+        <AlertTitle className="text-white flex-1 leading-snug text-sm ">
+          {message}
+        </AlertTitle>
       </div>
-      <AlertTitle className="text-white flex-1 text-base leading-snug">
-        {message}
-      </AlertTitle>
     </Alert>
   );
 };

@@ -1,20 +1,20 @@
 "use client";
+import { useEffect, useState } from "react";
 
+import { format, isPast } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
-import { CalendarIcon } from "@radix-ui/react-icons";
-import { format, isPast } from "date-fns";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import AlertMessage from "./AlertMessage";
 import { Button } from "./ui/button";
 import { Calendar } from "./ui/calendar";
+import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import AlertMessage from "./AlertMessage";
 import { postData } from "@/lib/strapiAPI";
+import { useRouter } from "next/navigation";
 
 const Reservation = ({
   reservations,
@@ -29,46 +29,36 @@ const Reservation = ({
 }) => {
   const [checkInDate, setCheckInDate] = useState<Date>();
   const [checkOutDate, setCheckOutDate] = useState<Date>();
-  const [messageAlert, setMessageAlert] = useState<{
+  const [alertMessage, setAlertMessage] = useState<{
     message: string;
     type: "error" | "success" | null;
   } | null>(null);
 
   const router = useRouter();
 
-  const formatDateForStrapi = (date: Date) => {
-    return format(date, "YYYY - MM - DD");
+  const formatDataForStrapi = (date: Date) => {
+    return format(date, "yyyy-MM-dd");
   };
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      return setMessageAlert(null);
+      setAlertMessage(null);
     }, 3000);
 
     return () => clearTimeout(timer);
-  }, [messageAlert]);
+  }, [alertMessage]);
 
-  const savedReservation = () => {
-    // console.log("savedReservation:", savedReservation);
+  const handleSaveReservation = () => {
     if (!checkInDate || !checkOutDate) {
-      return setMessageAlert({
+      setAlertMessage({
         message: "Please select check-in and check-out dates",
         type: "error",
       });
     }
 
-    if (checkInDate.getTime() === checkOutDate.getTime()) {
-      return setMessageAlert({
-        message: "Check-Out dates cannot be the same",
-        type: "error",
-      });
-    }
-
-    // filter reservations for the current Room
     const isReserved = reservations.data
       .filter((item: any) => item.attributes.room.data.id === room.data.id)
       .some((item: any) => {
-        // check if any reservation overlaps with
         const existingCheckIn = new Date(item.attributes.checkIn).setHours(
           0,
           0,
@@ -82,14 +72,14 @@ const Reservation = ({
           0
         );
 
-        // convert existing check-in data to midNight
+        // convert selected check-in date to midnight
         const checkInTime = checkInDate.setHours(0, 0, 0, 0);
         const checkOutTime = checkOutDate.setHours(0, 0, 0, 0);
 
-        // check if the room is reserved between the checkIN and checkOUT dates
+        // check if the room is reserved between the check in and check out dates
         const isReservedBetweenDates =
-          (checkInTime >= existingCheckIn && checkInTime < existingCheckOut) ||
-          (checkOutTime > existingCheckIn &&
+          (checkInTime >= existingCheckIn && checkOutDate < existingCheckOut) ||
+          (checkOutDate > existingCheckIn &&
             checkOutTime <= existingCheckOut) ||
           (existingCheckIn > checkInTime && existingCheckIn < checkOutTime) ||
           (existingCheckOut > checkInTime && existingCheckOut <= checkOutTime);
@@ -98,40 +88,38 @@ const Reservation = ({
       });
 
     if (isReserved) {
-      setMessageAlert({
+      setAlertMessage({
         message:
-          "This room is already for this date.Please choose different dates or another room",
+          "This room is already booked for the selected dates. Please choose different dates or another room.",
         type: "error",
       });
     } else {
       const data = {
         data: {
           firstname: userData.family_name,
-          lastname: userData.given_name,
+          lastname: userData.give_name,
           email: userData.email,
-          checkIn: checkInDate ? formatDateForStrapi(checkInDate) : null,
-          checkOut: checkOutDate ? formatDateForStrapi(checkOutDate) : null,
+          checkIn: checkInDate ? formatDataForStrapi(checkInDate) : null,
+
+          checkOut: checkOutDate ? formatDataForStrapi(checkOutDate) : null,
 
           room: room.data.id,
         },
       };
-
-      postData("http://127.0.0.1:1337/api/reservations", data);
-
-      setMessageAlert({
-        message: "Your booking has been successfully confirmed!",
-        type: "success",
+      postData(`http://127.0.0.1:1337/api/reservations`, data);
+      setAlertMessage({
+        message: "Your booking has been successfully confirmed",
+        type: "error",
       });
-
-      router.refresh();
     }
   };
+
   return (
     <div>
-      <div className="h-[320px] mb-4">
+      <div className="bg-tertiary h-[320px] mb-4">
         {/* top */}
-        <div className="bg-accent font-secondary font-semibold py-4 text-center relative mb-2">
-          <h4 className="text-xl text-white">Book Your Room</h4>
+        <div className="bg-accent py-4 text-center relative mb-2">
+          <h4 className="text-xl text-white font-primary">Book Your Room</h4>
           {/* triangle */}
           <div className="absolute -bottom-[8px] left-[calc(50%_-_10px)] w-0 h-0 border-l-[10px] border-l-transparent border-t-[8px] border-t-accent border-r-[10px] border-r-transparent" />
         </div>
@@ -140,11 +128,11 @@ const Reservation = ({
           <Popover>
             <PopoverTrigger asChild>
               <Button
-                variant="outline"
-                size="md"
+                variant={"default"}
+                size={"md"}
                 className={cn(
                   "w-full flex justify-start text-left font-semibold",
-                  !checkInDate && "text-slate-900"
+                  !checkInDate && "text-secondary"
                 )}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
@@ -165,16 +153,15 @@ const Reservation = ({
               />
             </PopoverContent>
           </Popover>
-
-          {/* Check OUT */}
+          {/* check out */}
           <Popover>
             <PopoverTrigger asChild>
               <Button
-                variant="outline"
-                size="md"
+                variant={"default"}
+                size={"md"}
                 className={cn(
                   "w-full flex justify-start text-left font-semibold",
-                  !checkOutDate && "text-slate-900"
+                  !checkOutDate && "text-secondary"
                 )}
               >
                 <CalendarIcon className="mr-2 h-4 w-4" />
@@ -196,20 +183,19 @@ const Reservation = ({
             </PopoverContent>
           </Popover>
 
-          {/* conditional rendering of the booking based USER */}
           {isUserAuthenticated ? (
             <Button
-              size={"md"}
-              onClick={() => savedReservation()}
-              className="w-full bg-accent font-secondary font-semibold text-white hover:bg-accent-hover"
+              onClick={() => handleSaveReservation()}
+              size="md"
+              className="w-full bg-accent hover:bg-accent-hover text-white font-primary"
             >
               Book Now
             </Button>
           ) : (
             <LoginLink>
               <Button
-                className="w-full bg-accent font-secondary font-semibold"
-                size={"md"}
+                className="w-full bg-accent hover:bg-accent-hover text-white font-primary"
+                size="md"
               >
                 Book Now
               </Button>
@@ -217,8 +203,8 @@ const Reservation = ({
           )}
         </div>
       </div>
-      {messageAlert && (
-        <AlertMessage message={messageAlert.message} type={messageAlert.type} />
+      {alertMessage && (
+        <AlertMessage message={alertMessage.message} type={alertMessage.type} />
       )}
     </div>
   );
