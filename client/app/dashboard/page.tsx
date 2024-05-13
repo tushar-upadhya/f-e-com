@@ -1,6 +1,8 @@
 import CancelReservation from "@/components/CancelReservation";
+import { Button } from "@/components/ui/button";
 import { getUserReservations } from "@/lib/strapiAPI";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import Link from "next/link";
 
 const DashboardPage = async () => {
   const { getUser } = getKindeServerSession();
@@ -18,8 +20,19 @@ const DashboardPage = async () => {
         </h3>
       </div>
       {userReservations.data.length < 1 ? (
-        <div>
-          <p>You don't have reservation</p>
+        <div className="flex flex-col items-center justify-center h-[50vh]">
+          <p className="text-xl text-center text-secondary/70 mb-4">
+            You don't have reservation
+          </p>
+          {/* button to homePage */}
+          <Link href={"/"}>
+            <Button
+              className="bg-accent hover:bg-accent-hover text-white font-secondary"
+              size={"md"}
+            >
+              Go to HomePage
+            </Button>
+          </Link>
         </div>
       ) : (
         userReservations.data.map((reservation: any) => {

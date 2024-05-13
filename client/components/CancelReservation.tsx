@@ -20,7 +20,7 @@ const CancelReservation = ({ reservation }: { reservation: any }) => {
 
   const handleCancelReservation = (id: number) => {
     // console.log("id:", id);
-    deleteData(`http://127.0.0.1:1337/api/reservation/${id}`);
+    deleteData(`http://127.0.0.1:1337/api/reservations/${id}`);
     router.refresh();
   };
   return (
@@ -51,7 +51,7 @@ const CancelReservation = ({ reservation }: { reservation: any }) => {
             Dismiss
           </AlertDialogCancel>
           <AlertDialogAction
-            className="hover:bg-accent-hover transition-all duration-200 hover:text-white"
+            className="hover:bg-accent-hover transition-all border border-accent duration-200 hover:text-white"
             onClick={() => handleCancelReservation(reservation.id)}
           >
             Continue
@@ -63,5 +63,3 @@ const CancelReservation = ({ reservation }: { reservation: any }) => {
 };
 
 export default CancelReservation;
-
-//  3 17

@@ -23,17 +23,17 @@ const Dropdown = ({ user }: { user: any }) => {
           {/* user */}
           <Avatar>
             <AvatarImage src={user.picture} />
-            <AvatarFallback className="bg-accent text-white">{`${user.given_name[0]}${user.family_name[0]}`}</AvatarFallback>
+            <AvatarFallback className="bg-accent text-white">{`${user.given_name[0]}`}</AvatarFallback>
           </Avatar>
 
           {/* name & email */}
-          <div>
+          {/* <div>
             <div className="flex gap-1 font-bold">
               <p>{user.given_name}</p>
               <p>{user.family_name}</p>
             </div>
             <p className="text-sm font-bold">{user.email}</p>
-          </div>
+          </div> */}
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent
@@ -43,19 +43,19 @@ const Dropdown = ({ user }: { user: any }) => {
         <DropdownMenuLabel className="text-base">My Account</DropdownMenuLabel>
         <DropdownMenuSeparator />
 
-        <DropdownMenuGroup className="flex flex-col gap-2">
+        <DropdownMenuGroup className="flex flex-col gap-2 font-primary font-semibold">
           <Link href={"/"}>
-            <DropdownMenuItem className="cursor-pointer">
-              HomePage
-              <DropdownMenuShortcut className="text-lg text-slate-700 hover:text-white">
+            <DropdownMenuItem className="cursor-pointer text-slate-700 hover:text-white">
+              Home
+              <DropdownMenuShortcut className="text-lg ">
                 <Home />
               </DropdownMenuShortcut>
             </DropdownMenuItem>
           </Link>
           <Link href={"/dashboard"}>
-            <DropdownMenuItem className="cursor-pointer">
+            <DropdownMenuItem className="cursor-pointer text-slate-700 hover:text-white">
               My Booking
-              <DropdownMenuShortcut className="text-lg text-slate-700 hover:text-white">
+              <DropdownMenuShortcut className="text-lg ">
                 <Calendar />
               </DropdownMenuShortcut>
             </DropdownMenuItem>
@@ -64,9 +64,9 @@ const Dropdown = ({ user }: { user: any }) => {
 
         <DropdownMenuSeparator />
         <LogoutLink>
-          <DropdownMenuItem className="cursor-pointer">
+          <DropdownMenuItem className="cursor-pointer font-primary font-semibold text-slate-700 hover:text-white">
             Log out
-            <DropdownMenuShortcut className="text-lg text-slate-700 hover:text-white">
+            <DropdownMenuShortcut className="text-lg">
               <LogOut />
             </DropdownMenuShortcut>
           </DropdownMenuItem>
