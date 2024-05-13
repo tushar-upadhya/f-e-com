@@ -13,23 +13,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "./ui/button";
-
-const deleteData = async (url: string) => {
-  const options = {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-  try {
-    const res = await fetch(url, options);
-    const data = await res.json();
-
-    return data;
-  } catch (error) {
-    console.log("error:", error);
-  }
-};
+import { deleteData } from "@/lib/strapiAPI";
 
 const CancelReservation = ({ reservation }: { reservation: any }) => {
   const router = useRouter();
@@ -42,13 +26,20 @@ const CancelReservation = ({ reservation }: { reservation: any }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button size={"md"}>Cancel Reservation</Button>
+        <Button
+          size={"md"}
+          className="bg-accent hover:bg-accent-hover font-primary text-white"
+        >
+          Cancel Reservation
+        </Button>
       </AlertDialogTrigger>
 
-      <AlertDialogContent>
+      <AlertDialogContent className="bg-white font-primary font-semibold">
         {/* header */}
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+          <AlertDialogTitle className="text-2xl text-accent">
+            Are you sure?
+          </AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone
           </AlertDialogDescription>
@@ -56,8 +47,11 @@ const CancelReservation = ({ reservation }: { reservation: any }) => {
 
         {/* footer */}
         <AlertDialogFooter>
-          <AlertDialogCancel>Dismiss</AlertDialogCancel>
+          <AlertDialogCancel className="bg-accent hover:bg-accent-hover transition-all duration-200 hover:text-white">
+            Dismiss
+          </AlertDialogCancel>
           <AlertDialogAction
+            className="hover:bg-accent-hover transition-all duration-200 hover:text-white"
             onClick={() => handleCancelReservation(reservation.id)}
           >
             Continue

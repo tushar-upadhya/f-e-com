@@ -50,3 +50,34 @@ export const postData = async (url: string, data: object) => {
     console.log("error:", error);
   }
 };
+
+// deleteData
+export const deleteData = async (url: string) => {
+  const options = {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    const res = await fetch(url, options);
+    const data = await res.json();
+
+    return data;
+  } catch (error) {
+    console.log("error:", error);
+  }
+};
+
+// getUserReservations
+export const getUserReservations = async (userEmail: any) => {
+  const res = await fetch(
+    `http://127.0.0.1:1337/api/reservations?[filters][email][$eq]=${userEmail}&populate=*`,
+    {
+      next: {
+        revalidate: 0,
+      },
+    }
+  );
+  return await res.json();
+};

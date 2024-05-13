@@ -42,7 +42,7 @@ const Reservation = ({
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setAlertMessage(null);
+      return setAlertMessage(null);
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -50,8 +50,15 @@ const Reservation = ({
 
   const handleSaveReservation = () => {
     if (!checkInDate || !checkOutDate) {
-      setAlertMessage({
+      return setAlertMessage({
         message: "Please select check-in and check-out dates",
+        type: "error",
+      });
+    }
+
+    if (checkInDate.getTime() === checkOutDate.getTime()) {
+      return setAlertMessage({
+        message: "Check-in and check-out cannot be the same",
         type: "error",
       });
     }
@@ -78,11 +85,11 @@ const Reservation = ({
 
         // check if the room is reserved between the check in and check out dates
         const isReservedBetweenDates =
-          (checkInTime >= existingCheckIn && checkOutDate < existingCheckOut) ||
-          (checkOutDate > existingCheckIn &&
+          (checkInTime >= existingCheckIn && checkInTime < existingCheckOut) ||
+          (checkInTime > existingCheckOut &&
             checkOutTime <= existingCheckOut) ||
-          (existingCheckIn > checkInTime && existingCheckIn < checkOutTime) ||
-          (existingCheckOut > checkInTime && existingCheckOut <= checkOutTime);
+          (existingCheckIn > checkInTime && existingCheckIn < checkOutDate) ||
+          (existingCheckOut > checkInTime && existingCheckIn <= checkOutTime);
 
         return isReservedBetweenDates;
       });
@@ -111,6 +118,7 @@ const Reservation = ({
         message: "Your booking has been successfully confirmed",
         type: "error",
       });
+      router.refresh();
     }
   };
 
