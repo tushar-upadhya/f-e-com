@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import logoImage from "../app/favicon.ico";
 import {
   LoginLink,
   RegisterLink,
@@ -28,12 +29,7 @@ const Header = async () => {
           <div className="flex items-center gap-8 justify-center xl:w-max">
             {/* logo */}
             <Link href={"/"}>
-              <Image
-                src={"/assets/logo.svg"}
-                width={160}
-                height={160}
-                alt="logo"
-              />
+              <Image src={logoImage} width={70} height={70} alt="logo" />
             </Link>
           </div>
 
