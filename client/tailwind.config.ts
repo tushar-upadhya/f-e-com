@@ -21,12 +21,13 @@ const config = {
       },
     },
     backgroundImage: {
-      hero: 'url("/assets/hero/bg.jpg)',
+      hero: 'url("/assets/hero/bg.jpg")',
     },
     fontFamily: {
       primary: "var(--font-marcellus)",
       secondary: "var(--font-urbanist)",
     },
+
     extend: {
       colors: {
         primary: {
