@@ -1,8 +1,16 @@
+"use client";
+
 import { socials } from "@/lib/socialsLib";
-import Image from "next/image";
 import Link from "next/link";
+import { useMemo } from "react";
 
 const Footer = () => {
+  const currentYear = useMemo(() => new Date().getFullYear(), []);
+
+  const currentMonth = useMemo(
+    () => new Date().toLocaleString("default", { month: "long" }),
+    []
+  );
   return (
     <footer className="bg-primary">
       <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-16 sm:px-6 lg:px-8">
@@ -197,7 +205,8 @@ const Footer = () => {
               className="text-white  hover:text-accent-hover duration-200 transition-all"
             >
               Tushar Upadhyay
-            </Link>
+            </Link>{" "}
+            | {currentYear} {currentMonth}
           </p>
         </div>
       </div>

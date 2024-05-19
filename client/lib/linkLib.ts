@@ -4,8 +4,8 @@ export const links = [
     path: "/",
   },
   {
-    name: "Pool",
-    path: "/pool",
+    name: "Amenities",
+    path: "/amenities",
   },
   {
     name: "Faq",
