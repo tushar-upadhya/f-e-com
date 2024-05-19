@@ -19,14 +19,17 @@ const MobileNav = () => {
         <Menu />
       </SheetTrigger>
 
-      <SheetContent side={"left"} className="flex justify-center items-center">
+      <SheetContent
+        side={"left"}
+        className="flex bg-white justify-center items-center"
+      >
         <nav className="flex flex-col gap-8 text-center">
           {links.map((link, index) => {
             return (
               <Link
                 href={link.path}
                 key={index}
-                className="text-2xl font-primary hover:text-accent transition-all"
+                className="text-2xl font-primary text-slate-800 hover:text-accent transition-all"
               >
                 {link.name}
               </Link>
